@@ -1,4 +1,5 @@
 import re
+from random import randint
 
 from django.conf import settings
 
@@ -13,12 +14,10 @@ def suggest_username(email):
     if len(username) < settings.USERNAME_MIN_LENGTH:
         username += generate_random_string(settings.USERNAME_MIN_LENGTH - len(username))
 
-    counter = 0
     guess = username
     from apps.user.models import User
 
     while User.objects.filter(username__iexact=guess).exists():
-        guess = f'{username}_{counter}'
-        counter += 1
+        guess = f'{username}_{randint(1111, 7777)}'
 
     return guess

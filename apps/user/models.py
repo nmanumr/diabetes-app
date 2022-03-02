@@ -4,15 +4,27 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils import timezone
-from phonenumber_field.modelfields import PhoneNumberField
 
 from apps.user.managers import UserManager, EmailVerificationManager
 from diabetes.ext.soft_delete import SoftDeleteModel
 
 
 class User(SoftDeleteModel, AbstractUser):
+    USER_TYPES = (
+        ('PATIENT', 'Patient'),
+        ('DOCTOR', 'Doctor')
+    )
+
+    GENDER_CHOICES = (
+        ('MALE', 'Male'),
+        ('FEMALE', 'Female'),
+        ('OTHER', 'Other'),
+    )
+
     email = models.EmailField(unique=True)
-    phone_number = PhoneNumberField(blank=True, null=True)
+    user_type = models.CharField(max_length=10, choices=USER_TYPES, default='PATIENT')
+    gender = models.CharField(choices=GENDER_CHOICES, max_length=10, blank=True, null=True)
+    age = models.IntegerField(blank=True, null=True)
     avatar = models.ImageField(upload_to='user_avatars', blank=True, null=True)
 
     is_verified = models.BooleanField(default=False)

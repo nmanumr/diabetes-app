@@ -5,7 +5,7 @@ import c from 'classnames';
 import useSWR from 'swr';
 import LinkTo from './LinkTo';
 import { setToken } from '../providers/auth';
-import UserAvatar from "./UserAvatar";
+import UserAvatar from './UserAvatar';
 
 export default function ProfileDropDown() {
   const { data } = useSWR('/api/user/current');
@@ -17,6 +17,7 @@ export default function ProfileDropDown() {
   };
 
   if (!data) {
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     return <></>;
   }
 

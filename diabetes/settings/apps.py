@@ -12,6 +12,7 @@ INSTALLED_APPS = [
 
     'apps.user',
     'apps.token',
+    'apps.diabetes',
 ]
 
 PHONENUMBER_DEFAULT_REGION = 'US'

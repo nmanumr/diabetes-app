@@ -87,7 +87,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('email', 'password')
+        fields = ('user_type', 'email', 'password', 'gender', 'age')
 
     def validate_email(self, email):
         email = User.objects.normalize_email(email)
@@ -107,5 +107,5 @@ class CreateUserSerializer(serializers.ModelSerializer):
 class PublicProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'avatar', 'display_name')
+        fields = ('username', 'user_type', 'first_name', 'last_name', 'avatar', 'display_name', 'gender', 'age')
  

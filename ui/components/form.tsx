@@ -20,7 +20,7 @@ interface FormInputProps {
   name: string,
   label?: string,
   required?: boolean,
-  type: string,
+  type?: string,
   pattern?: RegExp,
   minLength?: number,
   maxLength?: number,
